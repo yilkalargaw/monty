@@ -1,11 +1,11 @@
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pedantic -std=gnu89
+CFLAGS = -Wall -Werror -Wextra -pedantic -std=c89
 
 SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 DEPS = $(wildcard *.h)
 
-hsh: $(OBJS)
+monty: $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $@
 
 %.o: %.c $(DEPS)
@@ -15,4 +15,4 @@ hsh: $(OBJS)
 .PHONY: clean
 
 clean:
-	rm -f $(OBJS) hsh
+	rm -f $(OBJS) monty
