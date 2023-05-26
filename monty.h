@@ -44,6 +44,10 @@ typedef struct instruction_s
 
 void monty_push(stack_t **head, int nn);
 void monty_pall(stack_t **head);
+void monty_pint(stack_t **head);
+int monty_pop(stack_t **head);
+void monty_swap(stack_t **head);
+void monty_add(stack_t **head);
 int _isdigit(int c);
 int _consists_of_digits(char *str);
 void free_list(stack_t *head);
@@ -54,6 +58,16 @@ int valid_noarg_command(char *opcode);
 	do { \
 		if (strcmp(opcode, "pall") == 0) \
 			monty_pall(&mystack); \
+		else if (strcmp(opcode, "pint") == 0) \
+			monty_pint(&mystack); \
+		else if (strcmp(opcode, "pint") == 0) \
+			monty_pint(&mystack); \
+		else if (strcmp(opcode, "swap") == 0) \
+			monty_swap(&mystack); \
+		else if (strcmp(opcode, "pop") == 0) \
+			monty_pop(&mystack); \
+		else if (strcmp(opcode, "add") == 0) \
+			monty_add(&mystack); \
 	} while (0)
 
 #define RUN_MONTY_ONE_OPERAND() \
