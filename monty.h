@@ -65,6 +65,7 @@ int valid_noarg_command(char *opcode);
 				monty_push(&mystack, atoi(operand)); \
 			else \
 			{ \
+				fprintf(stderr, "L%u: usage: push integer", linum); \
 				exit(EXIT_FAILURE); \
 			} \
 		} \
