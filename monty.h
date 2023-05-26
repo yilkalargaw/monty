@@ -48,6 +48,10 @@ void monty_pint(stack_t **head);
 int monty_pop(stack_t **head);
 void monty_swap(stack_t **head);
 void monty_add(stack_t **head);
+void monty_sub(stack_t **head);
+void monty_div(stack_t **head);
+void monty_mul(stack_t **head);
+void monty_mod(stack_t **head);
 int _isdigit(int c);
 int _consists_of_digits(char *str);
 void free_list(stack_t *head);
@@ -68,6 +72,14 @@ int valid_noarg_command(char *opcode);
 			monty_pop(&mystack); \
 		else if (strcmp(opcode, "add") == 0) \
 			monty_add(&mystack); \
+		else if (strcmp(opcode, "sub") == 0) \
+			monty_sub(&mystack); \
+		else if (strcmp(opcode, "div") == 0) \
+			monty_div(&mystack); \
+		else if (strcmp(opcode, "mul") == 0) \
+			monty_mul(&mystack); \
+		else if (strcmp(opcode, "mod") == 0) \
+			monty_mod(&mystack); \
 	} while (0)
 
 #define RUN_MONTY_ONE_OPERAND() \

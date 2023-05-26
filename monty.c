@@ -30,10 +30,12 @@ int valid_1arg_command(char *opcode)
 int valid_noarg_command(char *opcode)
 {
 	char *command_list[] = {"pop", "pall", "pint",
-							"swap", "add", "nop"};
+							"swap", "add", "nop",
+							"sub", "div", "mul",
+							"mod"};
 	int i;
 
-	for (i = 0; i < 5; i++)
+	for (i = 0; i < 9; i++)
 	{
 		if (strcmp(opcode, command_list[i]) == 0)
 			return (1);
