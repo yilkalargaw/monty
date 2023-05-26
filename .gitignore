@@ -134,3 +134,4 @@ tags
 # Persistent undo
 [._]*.un~
 /monty
+/monty_bytecodes/
