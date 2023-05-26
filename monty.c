@@ -1,5 +1,6 @@
 #include "monty.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * valid_1arg_command - checks if command is a valid noarg
@@ -57,31 +58,39 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		/* printf("Usage: %s <filename>\n", argv[0]); */
-		return (1);
+		fprintf(stderr, "USAGE: monty file");
+		exit(EXIT_FAILURE);
 	}
 
 	if (file == NULL)
 	{
-		/* printf("Error: Can't open file %s\n", argv[1]); */
-		return (1);
+		fprintf(stderr, "Error: Can't open file %s", argv[1]);
+		exit(EXIT_FAILURE);
 	}
 
 	while (fgets(line, sizeof(line), file))
-	{
-		opcode = strtok(line, " \t\n");
-		if (opcode != NULL && valid_1arg_command(opcode) != 0)
 		{
-			/* printf("## line %u, opcode: %s ", linum, opcode); */
-			RUN_MONTY_ONE_OPERAND();
-		}
-		else if (valid_noarg_command(opcode) != 0)
-		{
-			/* printf("## line %u, opcode: %s\n", linum, opcode); */
-			RUN_MONTY_NO_OPERAND(opcode);
-		}
-		linum++;
-	}
+			opcode = strtok(line, " \t\n");
+			if (opcode != NULL)
+			{
+			   if (valid_1arg_command(opcode) != 0 || valid_noarg_command(opcode) != 0)
+				{
+					fprintf(stderr, "L%u: unknown instruction %s", linum, opcode);
+					exit(EXIT_FAILURE);
+				}
+				else if (opcode != NULL && valid_1arg_command(opcode) != 0)
+				{
+					/* printf("## line %u, opcode: %s ", linum, opcode); */
+					RUN_MONTY_ONE_OPERAND();
+				}
+				else if (valid_noarg_command(opcode) != 0)
+				{
+					/* printf("## line %u, opcode: %s\n", linum, opcode); */
+					RUN_MONTY_NO_OPERAND(opcode);
+				}
+			}
+			linum++;
+			}
 
 	free_list(mystack);
 
